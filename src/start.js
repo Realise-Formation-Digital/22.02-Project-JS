@@ -11,8 +11,9 @@ class Start {
   static async onload() {
     try {
       const beersList = await BeersService.getBeersList();
+      console.log(beersList)
       for (const beer of beersList){
-        BsHandler.createCard(beer.name, beer.description, beer.image_url)
+        BsHandler.createCard(beer.name, beer.description, beer.image_url, beer.id)
       }
     }catch (e) {
       console.error(e)

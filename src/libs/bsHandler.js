@@ -106,9 +106,11 @@ class BsHandler {
     let buttonDiv = document.createElement('a')
     buttonDiv.className = 'btn btn-primary'
     buttonDiv.innerText = 'Open Details'
+    buttonDiv.setAttribute('value', id)
     buttonDiv.addEventListener('click', function (e) {
-      e.stopPropagation();
-      BsHandler.showToast()
+      e.stopPropagation()
+
+      BsHandler.showModal()
     })
 
     cardBodyDiv.append(cardTitleDiv)
