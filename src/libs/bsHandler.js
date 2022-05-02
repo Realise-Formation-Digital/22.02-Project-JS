@@ -22,6 +22,7 @@ class BsHandler {
   }
 
   static showModal() {
+    if(!this.modal) this.createModal('modal')
     this.modal.show()
   }
 
@@ -65,12 +66,64 @@ class BsHandler {
   }
 
   static showToast() {
+    if (!this.toast) this.createToast('toast')
     this.toast.show()
   }
 
   static hideToast() {
     this.toast.hide()
   }
+
+  /*
+  Card Section
+  todo split in other file
+  */
+  static createCard(title, description, img, id){
+    const beerListElement = document.getElementById('beerList')
+
+    let col = document.createElement('div')
+    col.className = 'col'
+
+    let card = document.createElement('div')
+    card.className = 'card'
+    card.setAttribute('value', id)
+
+    let cardImg = document.createElement('img')
+    cardImg.className = 'card-img-top'
+    cardImg.src = img
+
+    let cardBodyDiv = document.createElement('div')
+    cardBodyDiv.className = 'card-body'
+
+    let cardTitleDiv = document.createElement('h5')
+    cardTitleDiv.className = 'card-title'
+    cardTitleDiv.innerText = title
+
+    let cardDescriptionDiv = document.createElement('p')
+    cardDescriptionDiv.className = 'card-text'
+    cardDescriptionDiv.innerText = description
+
+    let buttonDiv = document.createElement('a')
+    buttonDiv.className = 'btn btn-primary'
+    buttonDiv.innerText = 'Open Details'
+    buttonDiv.addEventListener('click', function (e) {
+      e.stopPropagation();
+      BsHandler.showToast()
+    })
+
+    cardBodyDiv.append(cardTitleDiv)
+    cardBodyDiv.append(cardDescriptionDiv)
+    cardBodyDiv.append(buttonDiv)
+
+    card.appendChild(cardImg)
+    card.appendChild(cardBodyDiv)
+
+    col.appendChild(card)
+
+    beerListElement.appendChild(col)
+
+  }
+
 
 }
 

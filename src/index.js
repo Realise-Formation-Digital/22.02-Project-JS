@@ -1,3 +1,3 @@
 import Start from "./start.js";
 
-Start.onload()
+await Start.onload()

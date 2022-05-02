@@ -1,4 +1,5 @@
 import BsHandler from "./libs/bsHandler.js";
+import BeersService from "./services/Beers.js";
 
 /**
  * @class
@@ -7,9 +8,12 @@ import BsHandler from "./libs/bsHandler.js";
  */
 class Start {
 
-  static onload() {
+  static async onload() {
     try {
-
+      const beersList = await BeersService.getBeersList();
+      for (const beer of beersList){
+        BsHandler.createCard(beer.name, beer.description, beer.image_url)
+      }
     }catch (e) {
       console.error(e)
     }
